@@ -21,15 +21,20 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 	// 톰캣, jsp 관련
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'javax.servlet:jstl:1.2'
+
 	// Mybatis, XML 관련
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+
 	// mysql 관련
 	runtimeOnly 'mysql:mysql-connector-java:8.0.25'
+
 	// jsp, html 등 정적 요소 반영 시 처리
 	implementation 'org.springframework.boot:spring-boot-devtools' //devtools
+
 	// lombok 관련 - log.debug 사용 시 필요
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -40,3 +45,12 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// 빌드 후 xml파일을 java파일 위치로 복사
+task copyXmlToClasses(type: Copy) {
+	from 'src/main/java'
+	include '**/*.xml'
+	into "${buildDir}/classes/java/main"
+}
+
+classes.dependsOn copyXmlToClasses
