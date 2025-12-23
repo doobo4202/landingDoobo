@@ -1,0 +1,41 @@
+/* 네비게이션 메뉴 START */
+.navDiv {
+    display: flex;
+    width: 100%;
+}
+.navLogoDiv {
+    width: 20%;
+}
+.navUl {
+    display: flex; width: 100%;
+}
+.navUl li {
+    font-size: 18px;
+    text-align: center;
+    line-height: 30px;
+    padding: 15px 0;
+}
+.logoLi {
+    padding: 0 !important;
+}
+.logoLi img {
+    height: 60px;
+}
+/* 네비게이션 메뉴 END */
+
+/* 랜딩 코멘트 START */
+.comment {
+    background-color: red;
+    padding: 200px 0px;
+    background-image: url("/images/landingDoobo/landingback.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.commentText {
+    font-size: 50px;
+    font-weight: 700;
+    text-align: center;
+    color: white;
+}
+
+/* 랜딩 코멘트 END */
