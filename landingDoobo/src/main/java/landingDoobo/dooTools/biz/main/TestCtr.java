@@ -16,10 +16,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class MainCtr {
+public class TestCtr {
 	
 	@Resource
-    private MainSvc mainSvc;
+    private TestSvc testSvc;
 
 	@RequestMapping("/dooTools/mainPage")
 	public String mainPage() {
@@ -32,8 +32,7 @@ public class MainCtr {
 	@RequestMapping("/dooTools/mvcTester")
 	public String text() {
 		
-		
-		String page = "/main/" + mainSvc.selectString();
+		String page = "/main/" + testSvc.selectString();
 		
 		return page;
 	}
@@ -46,7 +45,7 @@ public class MainCtr {
 		
 		log.info("requestMap : " + requestMap);
 		
-		selectList = mainSvc.selectList(requestMap);
+		selectList = testSvc.selectList(requestMap);
 		returnMap.put("testMap", selectList);
 		
 		log.info("returnMap : " + selectList);
@@ -62,7 +61,7 @@ public class MainCtr {
 		
 		log.info("requestMap : " + requestMap);
 
-		selectList = mainSvc.selectArray(requestMap);
+		selectList = testSvc.selectArray(requestMap);
 		returnMap.put("selectList", selectList);
 		
 		log.info("selectList : " + selectList);
