@@ -1,14 +1,18 @@
 /* 네비게이션 메뉴 START */
 .navDiv {
     display: flex;
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
 }
+
 .navLogoDiv {
     width: 20%;
 }
+
 .navUl {
     display: flex; width: 100%;
 }
+
 .navUl li {
     font-size: 18px;
     text-align: center;
@@ -18,8 +22,19 @@
 .logoLi {
     padding: 0 !important;
 }
+
 .logoLi img {
     height: 60px;
+}
+
+.navUl a {
+    color: black;
+    text-decoration: none;
+}
+
+.navUl a:hover {
+    color: #9da4ff;     /* 살짝 포인트 */
+    font-weight: 700;
 }
 /* 네비게이션 메뉴 END */
 
@@ -36,5 +51,437 @@
     text-align: center;
     color: white;
 }
-
 /* 랜딩 코멘트 END */
+
+/* 개발자 정보 START */
+.devInfoBg {
+    width: 100%;
+    padding: 50px 0;
+    background-color: #ebebeb;
+}
+
+.devInfoBg>h1 {
+    font-size: 30px;
+    text-align: left;
+    width: 75%;
+    margin: 7px auto;
+}
+
+.devInfoBg>h1>span {
+    color: #757575;
+}
+
+.devInfo {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+.devPhotoDiv {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.devPhoto {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    vertical-align: top;
+}
+
+.devInfoText {
+    width: 65%;
+    margin: 0 auto;
+}
+
+.devInfoText .infoHeader {
+    width: 100%;
+}
+
+.devInfoText .infoHeader h1{
+    text-align: left;
+    color: gray;
+    font-size: 20px;
+}
+
+.devInfoText .infoHeader span{
+    text-align: left;
+    font-size: 22px;
+}
+
+.devInfoText .keywords {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 15px 0 20px 0
+}
+
+.devInfoText .keywords span{
+    background-color: #786bbf;
+    padding: 5px 13px;
+    border-radius: 7px;
+    margin-right: 5px;
+    color: #ffffff;
+}
+
+.infoMiddleText {
+    text-align: left;
+    font-size: 14px;
+}
+
+.infoEndDiv {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.infoEndText {
+    text-align: center;
+    font-size: 21px;
+    font-weight: 600;
+    color: #4a46e3;
+}
+
+/* 개발자 정보 END */
+
+/* 경력 START */
+.expBg {
+    width: 100%;
+    padding: 50px 0;
+    background-color: #ebebeb;
+}
+
+.expBg>h1 {
+    font-size: 30px;
+    text-align: left;
+    width: 75%;
+    margin: 7px auto;
+}
+
+.expBg>h1>span {
+    color: #757575;
+}
+
+.expDiv {
+    width: 75%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    position: relative;
+}
+
+.expBlock {
+    display: flex;
+    position: relative;
+    padding-top: 13px;
+}
+
+.expLeftDiv {
+    width: 30%;
+}
+
+.expYear {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: right;
+    width: 85%;
+    display: block;
+    color: #2714bd;
+}
+
+.expRightDiv span{
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.expCompany {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.expPart {
+    color: #786bbf;
+    font-weight: 500;
+}
+
+.expContent {
+    color: gray;
+    margin: 20px 0;
+}
+
+/* 타임라인 세로 줄 */
+.expDiv::before {
+    content: "";
+    position: absolute;
+    left: 88px;
+    top: 24px;
+    bottom: 24px;
+    width: 2px;
+    background: #d4dde9;
+}
+
+/* 각 경력 포인트 동그라미 */
+.expBlock::before {
+    content: "";
+    position: absolute;
+    left: 69px;
+    top: 21px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #5742c4;
+    transform: translateX(-50%);
+}
+
+.expBlock + .expBlock {
+    border-top: 2px solid #f2f2f2;
+}
+
+/* 경력 END */
+
+/* 프로젝트 START */
+.projectBg {
+    width: 100%;
+    padding: 50px 0;
+    background-color: #ebebeb;
+}
+
+.projectBg>h1 {
+    font-size: 30px;
+    text-align: left;
+    width: 75%;
+    margin: 7px auto;
+}
+
+.projectBg>h1>span {
+    color: #757575;
+}
+
+.projectDiv {
+    width: 75%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.projectBlock {
+    width: 32%;
+    border: 1px solid #d3d3d3;
+    border-radius: 15px;
+    margin: 5px;
+}
+
+.projectTop {
+    height: 150px;
+    display: block;
+}
+
+.projectTop img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.projectBottom {
+    padding: 10px;
+    width: calc(100% - 20px);
+}
+
+.projectTitle {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.projectTagDiv {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.projectTag {
+    background-color: #8d79a3;
+    padding: 5px 13px;
+    border-radius: 7px;
+    color: #ffffff;
+    margin: 3px 5px 3px 0;
+}
+
+.projectTagDiv .projectTag:first-child {
+    background-color: #786bbf;
+}
+/* 프로젝트 END */
+
+/* FAQ START */
+.faqBg {
+    width: 100%;
+    padding: 50px 0;
+    background-color: #ebebeb;
+}
+
+.faqBg>h1 {
+    font-size: 30px;
+    text-align: left;
+    width: 75%;
+    margin: 7px auto;
+}
+
+.faqBg>h1>span {
+    color: #757575;
+}
+
+.faqDiv {
+    width: 75%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.faqBlock {
+    width: 100%;
+    border: 2px solid #e5e5e5;
+    border-bottom: none;
+}
+
+.faqBlock:first-child {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.faqBlock:last-child {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 2px solid #e5e5e5;
+}
+
+.faqTitle {
+    text-align: left;
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.faqTitle span{
+    font-size: 15px;
+    margin-left: 14px;
+    font-weight: 500;
+    color: #786bbf;
+}
+
+.faqTitle button {
+    margin-right: 14px;
+}
+
+.faqContent {
+    display: none;
+    background-color: #e5e5e5;
+    padding: 14px 0;
+    text-align: left;
+}
+
+.faqContent span {
+    font-size: 12px;
+    margin-left: 14px;
+    color: #454545;
+}
+/* FAQ END */
+
+/* 연락처 START */
+.contactBg {
+    width: 100%;
+    padding: 50px 0;
+    background-color: #ebebeb;
+}
+
+.contactBg>h1 {
+    font-size: 30px;
+    text-align: left;
+    width: 75%;
+    margin: 7px auto;
+}
+
+.contactBg>h1>span {
+    color: #757575;
+}
+
+.contactDiv {
+    width: 75%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.contactBlock {
+    width: 25%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.contactLeftDiv {
+    width: 15%;
+    display: flex;
+    /* align-content: space-around; */
+    padding: 10px;
+}
+
+.contactLeftDiv img {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+}
+
+.contactRightDiv {
+    width: 90%;
+    text-align: left;
+}
+
+.contactNm {
+    font-size: 18px;
+    font-weight: 700;
+    width: 100%;
+    display: block;
+    text-align: left;
+
+}
+
+.contactInfo {
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+/* 연락처 END */
+
+
+/* 풋터 START */
+.footerWrap {
+    width: 100%;
+    background: #0f0f1a;
+    padding: 45px 0 40px;
+}
+
+.footerCopy {
+    margin: 0;
+    color: #9a9ab6;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: .4px;
+}
+/* 풋터 END */

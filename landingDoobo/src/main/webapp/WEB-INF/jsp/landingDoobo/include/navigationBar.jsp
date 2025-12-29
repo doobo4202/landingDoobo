@@ -6,11 +6,11 @@
 </script>
         <div class="navDiv">
             <ul class="navUl">
-                <a herf="#"><li class="logoLi"><img src="/images/landingDoobo/dooboLogo.png"></li></a>
-                <a herf="#"><li>INFORMATION</li></a>
-                <a herf="#"><li>HISTORY</li></a>
-                <a herf="#"><li>PROJECT</li></a>
-                <a herf="#"><li>PORTFOLIO</li></a>
-                <a herf="#"><li>CONTACT</li></a>
+                <li class="logoLi"><a herf="#"><img src="/images/landingDoobo/dooboLogo.png"></a></li>
+                <li><a href="#devInfo">INFORMATION</a></li>
+                <li><a href="#experience">EXPERIENCE</a></li>
+                <li><a href="#project">PROJECT</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">CONTACT</a></li>
             </ul>
         </div>
