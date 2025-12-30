@@ -181,7 +181,7 @@
 }
 
 .expLeftDiv {
-    width: 30%;
+    width: 40%;
 }
 
 .expYear {
@@ -377,7 +377,7 @@
 }
 
 .faqTitle span{
-    font-size: 15px;
+    font-size: 17px;
     margin-left: 14px;
     font-weight: 500;
     color: #786bbf;
@@ -385,18 +385,18 @@
 
 .faqTitle button {
     margin-right: 14px;
+    background-color: white;
 }
 
 .faqContent {
     display: none;
     background-color: #e5e5e5;
-    padding: 14px 0;
+    padding: 28px 14px;
     text-align: left;
 }
 
 .faqContent span {
-    font-size: 12px;
-    margin-left: 14px;
+    font-size: 15px;
     color: #454545;
 }
 /* FAQ END */

@@ -2,6 +2,9 @@
 <%@ include file="/WEB-INF/jsp/landingDoobo/include/navigationBar.jsp" %>
 <script>
     $(document).ready(function () {
+        // 메인 기초정보 조회
+        fn_schBaseMain();
+
         // FAQ 토글 버튼 클릭 시 FAQ 내용을 보여주는 함수
         fn_toggleFAQ();
 
@@ -16,8 +19,6 @@
                 }, 500);     // 500 = 애니메이션 속도(ms)
             }
         });
-
-        fn_schBaseMain();
     });
 
 
@@ -25,11 +26,12 @@
     *   fn_toggleFAQ - FAQ 토글 버튼 클릭 시 FAQ 내용을 보여주는 함수
     */
     function fn_toggleFAQ() {
-        $('.faqTitle').click(function() {
-            if ($(this).next(".faqContent").css("display") === "none") {
-                $(this).next(".faqContent").slideDown();
+        $(document).on("click", ".faqTitle", function () {
+            var content = $(this).next(".faqContent");
+            if (content.is(":visible")) {
+                content.slideUp();
             } else {
-                $(this).next(".faqContent").slideUp();
+                content.slideDown();
             }
         });
     }
@@ -49,17 +51,86 @@
     */
     function fn_sucSchBaseMain(data) {
         if (data.resultCd !== "FAIL") {
+
+            // banner 정보
             var bannerInfo = data.bannerInfo;
             $("#commentText").text(bannerInfo.MAIN_TEXT);
 
+            // 개발자 정보
             var devInfo = data.devInfo;
             $("#devPhoto").attr("src", devInfo.DEV_IMG);
             $("#devNm").text(devInfo.DEV_NM);
             $("#devPosition").text(devInfo.DEV_PART);
-            $("#tag").text(devInfo.DEV_TAG);
-            $("#infoMiddleText").text(devInfo.DEV_TEXT);
+            $("#infoMiddleText").html(devInfo.DEV_TEXT);
             $("#infoEndText").text("\"" + devInfo.DEV_MSG + "\"");
 
+            var tag = devInfo.DEV_TAG.split("#").filter(v => v !== "");
+            var tagHtml = "";
+            tag.forEach(function(item, idx){
+                tagHtml += "<span>#"+item+"</span>";
+            });
+            $("#tag").html(tagHtml);
+
+            // 경력 정보
+            var expList = data.expList;
+            var expCnt = expList.length;
+
+            var expHtml = "";
+            var COMPANY_NM = "";
+            var START_DY = "";
+            var END_DY = "";
+            var GRADE_NM = "";
+            var SMALL_CONT = "";
+            var EXP_DETAIL = "";
+
+            for (i = 0 ; i < expCnt; i++) {
+                COMPANY_NM = expList[i].COMPANY_NM;
+                START_DY = expList[i].START_DY;
+                END_DY = expList[i].END_DY;
+                GRADE_NM = expList[i].GRADE_NM;
+                SMALL_CONT = expList[i].SMALL_CONT;
+                EXP_DETAIL = expList[i].EXP_DETAIL;
+
+                expHtml += "<div class=\"expBlock\">";
+                expHtml += "<div class=\"expLeftDiv\">";
+                expHtml += "<span class=\"expYear\">" + START_DY + " ~ " + END_DY + "</span>";
+                expHtml += "</div>";
+                expHtml += "<div class=\"expRightDiv\">";
+                expHtml += "<span class=\"expCompany\">" + COMPANY_NM + "</span>";
+                expHtml += "<span class=\"expPart\">" + SMALL_CONT + " / " + GRADE_NM + "</span>";
+                expHtml += "<span class=\"expContent\">" + EXP_DETAIL + "</span>";
+                expHtml += "</div>";
+                expHtml += "</div>";
+            }
+            $("#expDiv").html(expHtml);
+
+            // 포트폴리오 정보
+
+            // FAQ 정보 조회
+            var faqList = data.faqList;
+            var faqCnt = faqList.length;
+
+            var faqHtml = "";
+            var FAQ_QUESTION = "";
+            var FAQ_ANSWER = "";
+
+            for (i = 0 ; i < faqCnt; i++) {
+                FAQ_QUESTION = faqList[i].FAQ_QUESTION;
+                FAQ_ANSWER = faqList[i].FAQ_ANSWER;
+
+                faqHtml +="<div class=\"faqBlock\">";
+                faqHtml +="<div class=\"faqTitle\">";
+                faqHtml +="<span>Q. " + FAQ_QUESTION + "</span>";
+                faqHtml +="<button>▼</button>";
+                faqHtml +="</div>";
+                faqHtml +="<div class=\"faqContent\">";
+                faqHtml +="<span>" + FAQ_ANSWER + "</span>";
+                faqHtml +="</div>";
+                faqHtml +="</div>";
+            }
+            $("#faqDiv").html(faqHtml);
+
+            // 연락처 정보
             var contectInfo = data.contectInfo;
             $("#contactEmail").text(contectInfo.CONTACT_MAIL);
             $("#contactCall").text(contectInfo.CONTACT_CALL);
@@ -70,12 +141,12 @@
     }
 </script>
 
-        <div class="mainContent">
-            <div class="comment">
-                <span id="commentText" class="commentText"></span>
-            </div>
-            <div id="devInfo" class="devInfoBg">
-                <h1>개발자 정보 <span>INFORMATION</span></h1>
+<div class="mainContent">
+    <div class="comment">
+        <span id="commentText" class="commentText"></span>
+    </div>
+    <div id="devInfo" class="devInfoBg">
+    <h1>개발자 정보 <span>INFORMATION</span></h1>
                 <div class="devInfo">
                     <div class="devPhotoDiv">
                         <img src="/images/landingDoobo/photo.jpg" id="devPhoto" class="devPhoto">
@@ -84,13 +155,7 @@
                         <div class="infoHeader">
                             <h1><span id="devNm" class="devNm"></span> | <span id="devPosition" class="devPosition"></span></h1>
                         </div>
-                        <div id="tag" class="keywords">
-                            <span>#긍정적</span>
-                            <span>#신뢰성</span>
-                            <span>#성실성</span>
-                            <span>#변수대응</span>
-                            <span>#책임감</span>
-                        </div>
+                        <div id="tag" class="keywords"></div>
                         <p id="infoMiddleText" class="infoMiddleText"></p>
                         <div class="infoEndDiv">
                             <p id="infoEndText" class="infoEndText"></p>
@@ -100,42 +165,7 @@
             </div>
             <div id="experience" class="expBg">
                 <h1>경력 <span>EXPERIENCE</span></h1>
-                <div class="expDiv">
-                    <div class="expBlock">
-                        <div class="expLeftDiv">
-                            <span class="expYear">2022.02 ~ 현재</span>
-                        </div>
-                        <div class="expRightDiv">
-                            <span class="expCompany">비아이플랫폼</span>
-                            <span class="expPart">웹서비스 유지보수 및 기능 개발 / SW개발팀</span>
-                            <span class="expContent"> KSPO 전자카드 투표시스템 유지보수, 차세대 개발, 발매기 관제시스템 개발</span>
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="expBlock">
-                        <div class="expLeftDiv">
-                            <span class="expYear">2022.02 ~ 현재</span>
-                        </div>
-                        <div class="expRightDiv">
-                            <span class="expCompany">비아이플랫폼</span>
-                            <span class="expPart">웹서비스 유지보수 및 기능 개발 / SW개발팀</span>
-                            <span class="expContent"> KSPO 전자카드 투표시스템 유지보수, 차세대 개발, 발매기 관제시스템 개발</span>
-                        </div>
-                    </div>
-                    <div class="expBlock">
-                        <div class="expLeftDiv">
-                            <span class="expYear">2022.02 ~ 현재</span>
-                        </div>
-                        <div class="expRightDiv">
-                            <span class="expCompany">비아이플랫폼</span>
-                            <span class="expPart">웹서비스 유지보수 및 기능 개발 / SW개발팀</span>
-                            <span class="expContent"> KSPO 전자카드 투표시스템 유지보수, 차세대 개발, 발매기 관제시스템 개발</span>
-                        </div>
-                    </div>
-                </div>
+                <div id="expDiv" class="expDiv"></div>
             </div>
 
             <div id="project" class="projectBg">
@@ -255,42 +285,7 @@
 
             <div id="faq" class="faqBg">
                 <h1>FAQ <span>FAQ</span></h1>
-                <div class="faqDiv">
-                    <div class="faqBlock">
-                        <div class="faqTitle">
-                            <span>Q. 어떤 개발자가 되고 싶은가요?</span><button>▼</button>
-                        </div>
-                        <div class="faqContent">
-                            <span>침착하게 문제를 대응하고 사용자의 입장을 충분히 고려할 줄 알며, 변수와 예외처리에 능한 개발자가 되고 싶습니다.</span>
-                        </div>
-                    </div>
-
-
-                    <div class="faqBlock">
-                        <div class="faqTitle">
-                            <span>Q. 어떤 개발자가 되고 싶은가요?</span><button>▼</button>
-                        </div>
-                        <div class="faqContent">
-                            <span>침착하게 문제를 대응하고 사용자의 입장을 충분히 고려할 줄 알며, 변수와 예외처리에 능한 개발자가 되고 싶습니다.</span>
-                        </div>
-                    </div>
-                    <div class="faqBlock">
-                        <div class="faqTitle">
-                            <span>Q. 어떤 개발자가 되고 싶은가요?</span><button>▼</button>
-                        </div>
-                        <div class="faqContent">
-                            <span>침착하게 문제를 대응하고 사용자의 입장을 충분히 고려할 줄 알며, 변수와 예외처리에 능한 개발자가 되고 싶습니다.</span>
-                        </div>
-                    </div>
-                    <div class="faqBlock">
-                        <div class="faqTitle">
-                            <span>Q. 어떤 개발자가 되고 싶은가요?</span><button>▼</button>
-                        </div>
-                        <div class="faqContent">
-                            <span>침착하게 문제를 대응하고 사용자의 입장을 충분히 고려할 줄 알며, 변수와 예외처리에 능한 개발자가 되고 싶습니다.</span>
-                        </div>
-                    </div>
-                </div>
+                <div id="faqDiv" class="faqDiv"></div>
             </div>
 
             <div id="contact" class="contactBg">

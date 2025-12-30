@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -39,11 +40,19 @@ public class MainCtr {
             // 개발자 정보 조회
             Map<String, Object> devInfo = mainSvc.selectOneDevInfo();
 
+            // 경력 정보 조회
+            List<Map<String, Object>> expList = mainSvc.selectListExp();
+
+            // FAQ 정보 조회
+            List<Map<String, Object>> faqList = mainSvc.selectListfaq();
+            
             // 연락처 정보 조회
             Map<String, Object> contectInfo = mainSvc.selectOneContectInfo();
 
             returnMap.put("bannerInfo", bannerInfo);
             returnMap.put("devInfo", devInfo);
+            returnMap.put("expList", expList);
+            returnMap.put("faqList", faqList);
             returnMap.put("contectInfo", contectInfo);
 
             returnMap.put("result", "success");

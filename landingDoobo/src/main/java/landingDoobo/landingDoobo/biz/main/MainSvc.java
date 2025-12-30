@@ -4,6 +4,7 @@ import landingDoobo.landingDoobo.dao.main.MainDao;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 @Service("mainSvc")
@@ -18,6 +19,14 @@ public class MainSvc {
 
     public Map<String, Object> selectOneDevInfo() {
         return mainDao.selectOneDevInfo();
+    }
+
+    public List<Map<String, Object>> selectListExp() {
+        return mainDao.selectListExp();
+    }
+
+    public List<Map<String, Object>> selectListfaq() {
+        return mainDao.selectListfaq();
     }
 
     public Map<String, Object> selectOneContectInfo() {
