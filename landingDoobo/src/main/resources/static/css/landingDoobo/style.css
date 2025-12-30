@@ -1,16 +1,24 @@
-/* 네비게이션 메뉴 START */
+/* 네비게이션 메뉴 START (PC 기본) */
 .navDiv {
     display: flex;
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;   /* 모바일 슬라이드 기준 */
 }
 
-.navLogoDiv {
-    width: 20%;
+/* 항상 보이는 로고 */
+.navLogo img {
+    height: 60px;
+    display: block;
+    margin: 5px;
 }
 
+/* PC에서 가로 메뉴 */
 .navUl {
-    display: flex; width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .navUl li {
@@ -18,13 +26,7 @@
     text-align: center;
     line-height: 30px;
     padding: 15px 0;
-}
-.logoLi {
-    padding: 0 !important;
-}
-
-.logoLi img {
-    height: 60px;
+    margin-left: 20px;
 }
 
 .navUl a {
@@ -33,8 +35,32 @@
 }
 
 .navUl a:hover {
-    color: #9da4ff;     /* 살짝 포인트 */
+    color: #9da4ff;
     font-weight: 700;
+}
+
+/* 햄버거 버튼: PC에서는 안 보임 */
+.navToggle {
+    display: none;
+    width: 32px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    z-index: 1002;
+}
+.navToggle span {
+    display: block;
+    height: 3px;
+    margin: 4px 0;
+    background: #000;
+    transition: all .2s;
+}
+
+/* 딤 배경 기본 숨김 */
+.navDim {
+    display: none;
 }
 /* 네비게이션 메뉴 END */
 
@@ -505,12 +531,7 @@
 /* 모바일 화면에서 조금 더 여유 */
 @media(max-width:768px){
     #btnTop{
-        right: 12px;
-        bottom: 12px;
-        width: 54px;
-        height: 54px;
-        line-height: 54px;
-        font-size:20px;
+        display: none;
     }
 }
 
@@ -572,35 +593,68 @@
 /* 모바일 (가로 768px 이하) ------------------------------- */
 @media (max-width: 768px) {
 
-    /* 네비게이션: 위아래로 세로 정렬 */
+    /* 네비게이션: 모바일에서는 로고 + 햄버거, 오른쪽 슬라이드 메뉴 */
     .navDiv {
         width: 100%;
-        padding: 0 10px;
-        flex-direction: column;
-        align-items: center;
+        padding: 8px 12px;
+        justify-content: space-between;
     }
 
-    .navLogoDiv {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
+    /* 로고는 항상 왼쪽 */
+    .navLogo img {
+        height: 60px;
+        margin: 0;
+        display: inline;
     }
 
-    .logoLi img {
-        height: 40px;
+    /* 햄버거 버튼 보이기 (오른쪽) */
+    .navToggle {
+        display: block;
     }
 
+    /* 메뉴를 오른쪽에서 슬라이드 되는 패널로 변경 */
     .navUl {
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: center;
+        position: fixed;
+        top: 0;
+        right: -70%;          /* 처음엔 화면 밖 (오른쪽) */
+        width: 70%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 80px;
+        background: #ffffff;
+        box-shadow: -2px 0 12px rgba(0,0,0,.25);
+        transition: right .25s ease;
+        z-index: 1001;
     }
 
     .navUl li {
-        font-size: 14px;
+        width: 100%;
+        font-size: 16px;
         line-height: 24px;
-        padding: 8px 10px;
+        padding: 12px 20px;
+        text-align: left;
+        margin-left: 0;
     }
+
+    /* 열렸을 때 */
+    .navUl.open {
+        right: 0;
+    }
+
+    /* 딤 배경 */
+    .navDim {
+        display: none;
+        position: fixed;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,.4);
+        z-index: 1000;
+    }
+    .navDim.show {
+        display: block;
+    }
+
 
     /* 랜딩 코멘트 영역 */
     .comment {
@@ -698,7 +752,7 @@
     }
 
     .expLeftDiv {
-        width: 100%;
+        width: 30%;
         margin-bottom: 5px;
     }
 
@@ -781,7 +835,6 @@
 
     .faqContent span {
         font-size: 12px;
-        margin-left: 10px;
     }
 
     /* 연락처 */
