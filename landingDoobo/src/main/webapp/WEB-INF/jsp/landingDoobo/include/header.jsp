@@ -16,5 +16,11 @@
 <script type="text/javascript" src="/js/jquery/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="/js/common/common.js"></script><%-- 공용 js 호출 --%>
 
+<script type="text/javascript">
+    $(document).on("click touchstart", "#btnTop", function(e){
+        e.preventDefault();
+        $("html, body").animate({ scrollTop: 0 }, 400);
+    });
+</script>
 <body>
     <div class="content">

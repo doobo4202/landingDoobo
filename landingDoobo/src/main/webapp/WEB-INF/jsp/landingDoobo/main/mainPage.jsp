@@ -7,18 +7,6 @@
 
         // FAQ 토글 버튼 클릭 시 FAQ 내용을 보여주는 함수
         fn_toggleFAQ();
-
-        // 스크롤 이벤트를 상단 네비 메뉴 클릭 시 이용하여 페이지 이동
-        $('a[href^="#"]').on('click', function(e){
-            e.preventDefault();
-
-            const target = $(this.getAttribute('href'));
-            if(target.length) {
-                $('html, body').stop().animate({
-                    scrollTop: target.offset().top
-                }, 500);     // 500 = 애니메이션 속도(ms)
-            }
-        });
     });
 
 
@@ -333,4 +321,6 @@
                 </div>
             </div>
         </div>
+
+    <button id="btnTop">▲</button>
 <%@ include file="/WEB-INF/jsp/landingDoobo/include/footer.jsp" %>
