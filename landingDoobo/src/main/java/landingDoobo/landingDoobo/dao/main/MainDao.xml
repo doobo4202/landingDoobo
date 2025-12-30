@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="landingDoobo.landingDoobo.dao.main.MainDao">
+
+	<select id="selectOneMainBanner" resultType="Map">
+		-- 메인 정보 조회 --
+		SELECT
+			MAX(CASE WHEN C_SMALL_CD = '001' THEN S_VALUE END) AS MAIN_IMG,
+			MAX(CASE WHEN C_SMALL_CD = '002' THEN S_VALUE END) AS MAIN_TEXT
+		FROM
+		    T_LD_CODE
+		WHERE 1 = 1
+			AND C_BIG_CD = '10'
+		GROUP BY
+			C_BIG_CD
+	</select>
+
+	<select id="selectOneDevInfo" resultType="Map">
+		-- 개발자 정보 조회 --
+		SELECT
+			MAX(CASE WHEN C_SMALL_CD = '001' THEN S_VALUE END) AS DEV_NM,
+			MAX(CASE WHEN C_SMALL_CD = '002' THEN S_VALUE END) AS DEV_PART,
+			MAX(CASE WHEN C_SMALL_CD = '003' THEN S_VALUE END) AS DEV_IMG,
+			MAX(CASE WHEN C_SMALL_CD = '004' THEN S_VALUE END) AS DEV_TEXT,
+			MAX(CASE WHEN C_SMALL_CD = '005' THEN S_VALUE END) AS DEV_MSG,
+			MAX(CASE WHEN C_SMALL_CD = '006' THEN S_VALUE END) AS DEV_TAG
+		FROM
+			T_LD_CODE
+		WHERE 1 = 1
+		  	AND C_BIG_CD = '20'
+		GROUP BY
+			C_BIG_CD
+	</select>
+
+	<select id="selectOneContectInfo" resultType="Map">
+		-- 연락처 정보 조회 --
+		SELECT
+			MAX(CASE WHEN C_SMALL_CD = '001' THEN S_VALUE END) AS CONTACT_MAIL,
+			MAX(CASE WHEN C_SMALL_CD = '002' THEN S_VALUE END) AS CONTACT_CALL,
+			MAX(CASE WHEN C_SMALL_CD = '003' THEN S_VALUE END) AS CONTACT_TALK
+		FROM
+			T_LD_CODE
+		WHERE 1 = 1
+		  AND C_BIG_CD = '30'
+		GROUP BY
+			C_BIG_CD
+	</select>
+
+</mapper>

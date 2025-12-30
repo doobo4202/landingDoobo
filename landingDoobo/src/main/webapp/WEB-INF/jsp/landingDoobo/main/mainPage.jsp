@@ -2,8 +2,10 @@
 <%@ include file="/WEB-INF/jsp/landingDoobo/include/navigationBar.jsp" %>
 <script>
     $(document).ready(function () {
-        toggleFAQ();
+        // FAQ 토글 버튼 클릭 시 FAQ 내용을 보여주는 함수
+        fn_toggleFAQ();
 
+        // 스크롤 이벤트를 상단 네비 메뉴 클릭 시 이용하여 페이지 이동
         $('a[href^="#"]').on('click', function(e){
             e.preventDefault();
 
@@ -14,9 +16,15 @@
                 }, 500);     // 500 = 애니메이션 속도(ms)
             }
         });
+
+        fn_schBaseMain();
     });
 
-    function toggleFAQ() {
+
+    /*
+    *   fn_toggleFAQ - FAQ 토글 버튼 클릭 시 FAQ 내용을 보여주는 함수
+    */
+    function fn_toggleFAQ() {
         $('.faqTitle').click(function() {
             if ($(this).next(".faqContent").css("display") === "none") {
                 $(this).next(".faqContent").slideDown();
@@ -25,33 +33,67 @@
             }
         });
     }
+
+    /*
+    *   fn_schBaseMain - 메인 기초정보 조회
+    */
+    function fn_schBaseMain() {
+        var param = new Object();
+        var url = "/ld/main/schBaseMain";
+
+        AJAX_COLL(url, param, "", "", fn_sucSchBaseMain);
+    }
+
+    /*
+    *   fn_sucSchBaseMain - 메인 기초정보 조회 성공 시 호출되는 함수
+    */
+    function fn_sucSchBaseMain(data) {
+        if (data.resultCd !== "FAIL") {
+            var bannerInfo = data.bannerInfo;
+            $("#commentText").text(bannerInfo.MAIN_TEXT);
+
+            var devInfo = data.devInfo;
+            $("#devPhoto").attr("src", devInfo.DEV_IMG);
+            $("#devNm").text(devInfo.DEV_NM);
+            $("#devPosition").text(devInfo.DEV_PART);
+            $("#tag").text(devInfo.DEV_TAG);
+            $("#infoMiddleText").text(devInfo.DEV_TEXT);
+            $("#infoEndText").text("\"" + devInfo.DEV_MSG + "\"");
+
+            var contectInfo = data.contectInfo;
+            $("#contactEmail").text(contectInfo.CONTACT_MAIL);
+            $("#contactCall").text(contectInfo.CONTACT_CALL);
+            $("#contactTalk").text(contectInfo.CONTACT_TALK);
+        } else {
+
+        }
+    }
 </script>
 
         <div class="mainContent">
             <div class="comment">
-                <span class="commentText">DON'T STOP THINKING</span>
+                <span id="commentText" class="commentText"></span>
             </div>
             <div id="devInfo" class="devInfoBg">
                 <h1>개발자 정보 <span>INFORMATION</span></h1>
                 <div class="devInfo">
                     <div class="devPhotoDiv">
-                        <img src="/images/landingDoobo/photo.jpg" class="devPhoto">
+                        <img src="/images/landingDoobo/photo.jpg" id="devPhoto" class="devPhoto">
                     </div>
                     <div class="devInfoText">
                         <div class="infoHeader">
-                            <h1><span class="devNm">김두한</span> | <span class="devPosition">Backend Developer</span></h1>
+                            <h1><span id="devNm" class="devNm"></span> | <span id="devPosition" class="devPosition"></span></h1>
                         </div>
-                        <div class="keywords">
+                        <div id="tag" class="keywords">
                             <span>#긍정적</span>
                             <span>#신뢰성</span>
                             <span>#성실성</span>
                             <span>#변수대응</span>
                             <span>#책임감</span>
                         </div>
-                        <p class="infoMiddleText">안정적인 문재 해결과 변수와 예외 상황을 고려하여</p>
-                        <p class="infoMiddleText">서비스에 미치는 영향을 최소화하는 개발을 지향합니다.</p>
+                        <p id="infoMiddleText" class="infoMiddleText"></p>
                         <div class="infoEndDiv">
-                            <p class="infoEndText">"복잡한 문제 속에서도 끝까지 답을 찾아내는 개발자"</p>
+                            <p id="infoEndText" class="infoEndText"></p>
                         </div>
                     </div>
                 </div>
@@ -260,7 +302,7 @@
                         </div>
                         <div class="contactRightDiv">
                             <span class="contactNm">이메일</span>
-                            <span class="contactInfo">kjo4202@naver.com</span>
+                            <span id="contactEmail" class="contactInfo"></span>
                         </div>
                     </div>
 
@@ -270,7 +312,7 @@
                         </div>
                         <div class="contactRightDiv">
                             <span class="contactNm">전화번호</span>
-                            <span class="contactInfo">010-2626-8072</span>
+                            <span id="contactCall" class="contactInfo"></span>
                         </div>
                     </div>
 
@@ -280,7 +322,7 @@
                         </div>
                         <div class="contactRightDiv">
                             <span class="contactNm">카카오톡</span>
-                            <span class="contactInfo">https://open.kakao.com/o/svQjXT8h</span>
+                            <span id="contactTalk" class="contactInfo"></span>
                         </div>
                     </div>
 
