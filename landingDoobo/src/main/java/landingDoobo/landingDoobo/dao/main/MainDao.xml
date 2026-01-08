@@ -56,12 +56,14 @@
 	</select>
 
 	<select id="selectListProject" resultType="Map">
-		-- 경력 정보 조회 --
+		-- 프로젝트 정보 조회 --
 		SELECT
 			C_PROJECT_SEQ PROJECT_SEQ,
 			S_PROJECT_NM PROJECT_NM,
 			S_TAG PROJECT_TAG,
-			IFNULL (S_SUM_IMG, '/images/landingDoobo/project/img_ing.png') SUM_IMG
+			IFNULL (S_SUM_IMG, '/images/landingDoobo/project/img_ing.png') SUM_IMG,
+			DATE_FORMAT(STR_TO_DATE(C_START_DY, '%Y%m%d'), '%Y.%m') START_DY,
+			DATE_FORMAT(STR_TO_DATE(C_END_DY, '%Y%m%d'), '%Y.%m') END_DY
 		FROM
 			T_LD_PROJECT_INFO
 		WHERE 1 = 1
@@ -95,6 +97,25 @@
 		  AND C_BIG_CD = '30'
 		GROUP BY
 			C_BIG_CD
+	</select>
+
+	<select id="selectOneProjectDetail" resultType="Map">
+		-- 프로젝트 상세 정보 조회 --
+		SELECT
+			C_PROJECT_SEQ PROJECT_SEQ,
+			S_PROJECT_NM PROJECT_NM,
+			S_TAG PROJECT_TAG,
+			DATE_FORMAT(STR_TO_DATE(C_START_DY, '%Y%m%d'), '%Y.%m') START_DY,
+			DATE_FORMAT(STR_TO_DATE(C_END_DY, '%Y%m%d'), '%Y.%m') END_DY,
+			S_DETAIL_IMG DETAIL_IMG,
+			S_DETAIL_CONT DETAIL_CONT
+		FROM
+			T_LD_PROJECT_INFO
+		WHERE 1 = 1
+			AND C_PROJECT_SEQ = '2'
+			AND C_USE_YN = 'Y'
+		ORDER BY
+			C_PROJECT_SEQ DESC
 	</select>
 
 </mapper>

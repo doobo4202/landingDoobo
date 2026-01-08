@@ -69,5 +69,27 @@ public class MainCtr {
 
         return returnMap;
     }
+
+    @RequestMapping("/project/schProjectDetail")
+    public @ResponseBody Map<String, Object> schProjectDetail(@RequestParam Map<String, Object> requestMap) {
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+        Map<String, Object> paramMap = requestMap;
+
+        try {
+            // 프로젝트 상세 조회
+            Map<String, Object> detail = mainSvc.selectOneProjectDetail(paramMap);
+            returnMap.put("detail", detail);
+
+            returnMap.put("result", "success");
+            returnMap.put("message", "성공");
+        }catch (Exception e) {
+            log.error("▶▶ schBaseMain API 호출 중 오류 발생 : {}", e.getMessage(), e);
+
+            returnMap.put("result", "FAIL");
+            returnMap.put("message", "처리 중 오류가 발생했습니다.");
+        }
+
+        return returnMap;
+    }
 }
 

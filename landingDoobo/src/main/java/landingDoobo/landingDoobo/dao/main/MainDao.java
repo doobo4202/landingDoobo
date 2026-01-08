@@ -19,4 +19,6 @@ public interface MainDao {
     List<Map<String, Object>> selectListfaq();
 
     Map<String, Object> selectOneContectInfo();
+
+    Map<String, Object> selectOneProjectDetail(Map<String, Object> paramMap);
 }

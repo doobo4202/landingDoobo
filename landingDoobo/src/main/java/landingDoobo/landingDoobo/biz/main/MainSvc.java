@@ -36,4 +36,8 @@ public class MainSvc {
     public Map<String, Object> selectOneContectInfo() {
         return mainDao.selectOneContectInfo();
     }
+
+    public Map<String, Object> selectOneProjectDetail(Map<String, Object> paramMap) {
+        return mainDao.selectOneProjectDetail(paramMap);
+    }
 }
