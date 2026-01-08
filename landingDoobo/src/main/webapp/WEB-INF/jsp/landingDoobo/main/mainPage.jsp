@@ -93,6 +93,46 @@
             $("#expDiv").html(expHtml);
 
             // 포트폴리오 정보
+            var projectList = data.projectList;
+            var projectCnt = projectList.length;
+
+            var projectHtml = "";
+            var PROJECT_SEQ = "";
+            var PROJECT_NM = "";
+            var PROJECT_TAG = "";
+            var SUM_IMG = "";
+
+            var proTag = "";
+            var proTagHtml = "";
+
+            for (i = 0 ; i < projectCnt; i++) {
+                PROJECT_SEQ = projectList[i].PROJECT_SEQ;
+                PROJECT_NM = projectList[i].PROJECT_NM;
+                PROJECT_TAG = projectList[i].PROJECT_TAG;
+                SUM_IMG = projectList[i].SUM_IMG;
+
+                proTag = "";
+                proTagHtml = "";
+                proTag = PROJECT_TAG.split("#").filter(v => v !== "");
+                proTag.forEach(function (item, idx) {
+                    proTagHtml += "<span class=\"projectTag\">#" + item + "</span>";
+                });
+
+                projectHtml += "<div class=\"projectBlock\" seq=\"" + PROJECT_SEQ + "\">";
+                projectHtml += "<div class=\"projectTop\">";
+                projectHtml += "<img src=\"" + SUM_IMG + "\" class=\"projectImg\"/>";
+                projectHtml += "<div class=\"projectTopOverlay\">";
+                projectHtml += "<img src=\"/images/landingDoobo/icon/icon_plus.png\" class=\"projectPlus\"/>";
+                projectHtml += "</div>";
+                projectHtml += "</div>";
+                projectHtml += "<div class=\"projectBottom\">";
+                projectHtml += "<span class=\"projectTitle\">" + PROJECT_NM + "</span>";
+                projectHtml += "<span class=\"projectTagDiv\">" + proTagHtml + "</span>";
+                projectHtml += "</div>";
+                projectHtml += "</div>";
+            }
+            $("#projectDiv").html(projectHtml);
+
 
             // FAQ 정보 조회
             var faqList = data.faqList;
@@ -102,16 +142,16 @@
             var FAQ_QUESTION = "";
             var FAQ_ANSWER = "";
 
-            for (i = 0 ; i < faqCnt; i++) {
+            for (i = 0; i < faqCnt; i++) {
                 FAQ_QUESTION = faqList[i].FAQ_QUESTION;
                 FAQ_ANSWER = faqList[i].FAQ_ANSWER;
 
-                faqHtml +="<div class=\"faqBlock\">";
-                faqHtml +="<div class=\"faqTitle\">";
-                faqHtml +="<span>Q. " + FAQ_QUESTION + "</span>";
-                faqHtml +="<button>▼</button>";
-                faqHtml +="</div>";
-                faqHtml +="<div class=\"faqContent\">";
+                faqHtml += "<div class=\"faqBlock\">";
+                faqHtml += "<div class=\"faqTitle\">";
+                faqHtml += "<span>Q. " + FAQ_QUESTION + "</span>";
+                faqHtml += "<button>▼</button>";
+                faqHtml += "</div>";
+                faqHtml += "<div class=\"faqContent\">";
                 faqHtml +="<span>" + FAQ_ANSWER + "</span>";
                 faqHtml +="</div>";
                 faqHtml +="</div>";
@@ -134,193 +174,85 @@
         <span id="commentText" class="commentText"></span>
     </div>
     <div id="devInfo" class="devInfoBg">
-    <h1>개발자 정보 <span>INFORMATION</span></h1>
-                <div class="devInfo">
-                    <div class="devPhotoDiv">
-                        <img src="/images/landingDoobo/photo.jpg" id="devPhoto" class="devPhoto">
-                    </div>
-                    <div class="devInfoText">
-                        <div class="infoHeader">
-                            <h1><span id="devNm" class="devNm"></span> | <span id="devPosition" class="devPosition"></span></h1>
-                        </div>
-                        <div id="tag" class="keywords"></div>
-                        <p id="infoMiddleText" class="infoMiddleText"></p>
-                        <div class="infoEndDiv">
-                            <p id="infoEndText" class="infoEndText"></p>
-                        </div>
-                    </div>
+        <h1>개발자 정보
+            <span>INFORMATION</span>
+        </h1>
+        <div class="devInfo">
+            <div class="devPhotoDiv">
+                <img src="" id="devPhoto" class="devPhoto">
+            </div>
+            <div class="devInfoText">
+                <div class="infoHeader">
+                    <h1><span id="devNm" class="devNm"></span> | <span id="devPosition" class="devPosition"></span></h1>
                 </div>
-            </div>
-            <div id="experience" class="expBg">
-                <h1>경력 <span>EXPERIENCE</span></h1>
-                <div id="expDiv" class="expDiv"></div>
-            </div>
-
-            <div id="project" class="projectBg">
-                <h1>프로젝트 <span>PROJECT</span></h1>
-                <div class="projectDiv">
-                    <div class="projectBlock">
-                        <div class="projectTop">
-                            <img src="/images/landingDoobo/projectTest.png" class="projectImg">
-                        </div>
-                        <div class="projectBottom">
-                            <span class="projectTitle">프로젝트명</span>
-                            <span class="projectTagDiv">
-                                <span class="projectTag">#관제</span>
-                                <span class="projectTag">#Spring</span>
-                                <span class="projectTag">#Java</span>
-                                <span class="projectTag">#회사</span>
-                                <span class="projectTag">#풀스택</span>
-                            </span>
-                        </div>
-                    </div>
-
-
-
-                    <div class="projectBlock">
-                        <div class="projectTop">
-                            <img src="/images/landingDoobo/projectTest.png" class="projectImg">
-                        </div>
-                        <div class="projectBottom">
-                            <span class="projectTitle">프로젝트명</span>
-                            <span class="projectTagDiv">
-                                <span class="projectTag">#관제</span>
-                                <span class="projectTag">#Spring</span>
-                                <span class="projectTag">#Java</span>
-                                <span class="projectTag">#회사</span>
-                                <span class="projectTag">#풀스택</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="projectBlock">
-                        <div class="projectTop">
-                            <img src="/images/landingDoobo/projectTest.png" class="projectImg">
-                        </div>
-                        <div class="projectBottom">
-                            <span class="projectTitle">프로젝트명</span>
-                            <span class="projectTagDiv">
-                                <span class="projectTag">#관제</span>
-                                <span class="projectTag">#Spring</span>
-                                <span class="projectTag">#Java</span>
-                                <span class="projectTag">#회사</span>
-                                <span class="projectTag">#풀스택</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="projectBlock">
-                        <div class="projectTop">
-                            <img src="/images/landingDoobo/projectTest.png" class="projectImg">
-                        </div>
-                        <div class="projectBottom">
-                            <span class="projectTitle">프로젝트명</span>
-                            <span class="projectTagDiv">
-                                <span class="projectTag">#관제</span>
-                                <span class="projectTag">#Spring</span>
-                                <span class="projectTag">#Java</span>
-                                <span class="projectTag">#회사</span>
-                                <span class="projectTag">#풀스택</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="projectBlock">
-                        <div class="projectTop">
-                            <img src="/images/landingDoobo/projectTest.png" class="projectImg">
-                        </div>
-                        <div class="projectBottom">
-                            <span class="projectTitle">프로젝트명</span>
-                            <span class="projectTagDiv">
-                                <span class="projectTag">#관제</span>
-                                <span class="projectTag">#Spring</span>
-                                <span class="projectTag">#Java</span>
-                                <span class="projectTag">#회사</span>
-                                <span class="projectTag">#풀스택</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="projectBlock">
-                        <div class="projectTop">
-                            <img src="/images/landingDoobo/projectTest.png" class="projectImg">
-                        </div>
-                        <div class="projectBottom">
-                            <span class="projectTitle">프로젝트명</span>
-                            <span class="projectTagDiv">
-                                <span class="projectTag">#관제</span>
-                                <span class="projectTag">#Spring</span>
-                                <span class="projectTag">#Java</span>
-                                <span class="projectTag">#회사</span>
-                                <span class="projectTag">#풀스택</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="projectBlock">
-                        <div class="projectTop">
-                            <img src="/images/landingDoobo/projectTest.png" class="projectImg">
-                        </div>
-                        <div class="projectBottom">
-                            <span class="projectTitle">프로젝트명</span>
-                            <span class="projectTagDiv">
-                                <span class="projectTag">#관제</span>
-                                <span class="projectTag">#Spring</span>
-                                <span class="projectTag">#Java</span>
-                                <span class="projectTag">#회사</span>
-                                <span class="projectTag">#풀스택</span>
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <div id="faq" class="faqBg">
-                <h1>FAQ <span>FAQ</span></h1>
-                <div id="faqDiv" class="faqDiv"></div>
-            </div>
-
-            <div id="contact" class="contactBg">
-                <h1>연락처 <span>CONTACT</span></h1>
-                <div class="contactDiv">
-                    <div class="contactBlock">
-                        <div class="contactLeftDiv">
-                            <img src="/images/landingDoobo/icon/icon_email.png" class="contactImg">
-                        </div>
-                        <div class="contactRightDiv">
-                            <span class="contactNm">이메일</span>
-                            <span id="contactEmail" class="contactInfo"></span>
-                        </div>
-                    </div>
-
-                    <div class="contactBlock">
-                        <div class="contactLeftDiv">
-                            <img src="/images/landingDoobo/icon/icon_call.png" class="contactImg">
-                        </div>
-                        <div class="contactRightDiv">
-                            <span class="contactNm">전화번호</span>
-                            <span id="contactCall" class="contactInfo"></span>
-                        </div>
-                    </div>
-
-                    <div class="contactBlock">
-                        <div class="contactLeftDiv">
-                            <img src="/images/landingDoobo/icon/icon_talk.png" class="contactImg">
-                        </div>
-                        <div class="contactRightDiv">
-                            <span class="contactNm">카카오톡</span>
-                            <span id="contactTalk" class="contactInfo"></span>
-                        </div>
-                    </div>
-
-                    <div class="contactBlock">
-                        <div class="contactLeftDiv">
-                            <img src="/images/landingDoobo/icon/icon_etc.png" class="contactImg">
-                        </div>
-                        <div class="contactRightDiv">
-                            <span class="contactNm">기타</span>
-                            <span class="contactInfo">https://open.kakao.com/o/svQjXT8h</span>
-                        </div>
-                    </div>
+                <div id="tag" class="keywords"></div>
+                <p id="infoMiddleText" class="infoMiddleText"></p>
+                <div class="infoEndDiv">
+                    <p id="infoEndText" class="infoEndText"></p>
                 </div>
             </div>
         </div>
+    </div>
+    <div id="experience" class="expBg">
+        <h1>경력 <span>EXPERIENCE</span></h1>
+        <div id="expDiv" class="expDiv"></div>
+    </div>
+
+    <div id="project" class="projectBg">
+        <h1>프로젝트 <span>PROJECT</span></h1>
+        <div id="projectDiv" class="projectDiv"></div>
+    </div>
+
+    <div id="faq" class="faqBg">
+        <h1>FAQ <span>FAQ</span></h1>
+        <div id="faqDiv" class="faqDiv"></div>
+    </div>
+
+    <div id="contact" class="contactBg">
+        <h1>연락처 <span>CONTACT</span></h1>
+        <div class="contactDiv">
+            <div class="contactBlock">
+                <div class="contactLeftDiv">
+                    <img src="/images/landingDoobo/icon/icon_email.png" class="contactImg">
+                </div>
+                <div class="contactRightDiv">
+                    <span class="contactNm">이메일</span>
+                    <span id="contactEmail" class="contactInfo"></span>
+                </div>
+            </div>
+
+            <div class="contactBlock">
+                <div class="contactLeftDiv">
+                    <img src="/images/landingDoobo/icon/icon_call.png" class="contactImg">
+                </div>
+                <div class="contactRightDiv">
+                    <span class="contactNm">전화번호</span>
+                    <span id="contactCall" class="contactInfo"></span>
+                </div>
+            </div>
+
+            <div class="contactBlock">
+                <div class="contactLeftDiv">
+                    <img src="/images/landingDoobo/icon/icon_talk.png" class="contactImg">
+                </div>
+                <div class="contactRightDiv">
+                    <span class="contactNm">카카오톡</span>
+                    <span id="contactTalk" class="contactInfo"></span>
+                </div>
+            </div>
+
+            <div class="contactBlock">
+                <div class="contactLeftDiv">
+                    <img src="/images/landingDoobo/icon/icon_etc.png" class="contactImg">
+                </div>
+                <div class="contactRightDiv">
+                    <span class="contactNm">기타</span>
+                    <span class="contactInfo">https://open.kakao.com/o/svQjXT8h</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <button id="btnTop">▲</button>
 <%@ include file="/WEB-INF/jsp/landingDoobo/include/footer.jsp" %>

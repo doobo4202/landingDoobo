@@ -31,7 +31,6 @@ public class MainCtr {
     @RequestMapping("/ld/main/schBaseMain")
     public @ResponseBody Map<String, Object> schBaseMain(@RequestParam Map<String, Object> requestMap) {
         Map<String, Object> returnMap = new HashMap<String, Object>();
-        Map<String, Object> paramMap = new HashMap<String, Object>();
 
         try {
             // 메인 정보 조회
@@ -43,6 +42,9 @@ public class MainCtr {
             // 경력 정보 조회
             List<Map<String, Object>> expList = mainSvc.selectListExp();
 
+            // 경력 정보 조회
+            List<Map<String, Object>> projectList = mainSvc.selectListProject();
+
             // FAQ 정보 조회
             List<Map<String, Object>> faqList = mainSvc.selectListfaq();
             
@@ -52,6 +54,7 @@ public class MainCtr {
             returnMap.put("bannerInfo", bannerInfo);
             returnMap.put("devInfo", devInfo);
             returnMap.put("expList", expList);
+            returnMap.put("projectList", projectList);
             returnMap.put("faqList", faqList);
             returnMap.put("contectInfo", contectInfo);
 
@@ -67,3 +70,4 @@ public class MainCtr {
         return returnMap;
     }
 }
+

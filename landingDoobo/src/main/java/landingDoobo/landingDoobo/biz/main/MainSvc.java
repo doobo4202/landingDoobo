@@ -25,6 +25,10 @@ public class MainSvc {
         return mainDao.selectListExp();
     }
 
+    public List<Map<String, Object>> selectListProject() {
+        return mainDao.selectListProject();
+    }
+
     public List<Map<String, Object>> selectListfaq() {
         return mainDao.selectListfaq();
     }

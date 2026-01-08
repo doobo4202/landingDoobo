@@ -55,6 +55,21 @@
 			C_START_DY DESC
 	</select>
 
+	<select id="selectListProject" resultType="Map">
+		-- 경력 정보 조회 --
+		SELECT
+			C_PROJECT_SEQ PROJECT_SEQ,
+			S_PROJECT_NM PROJECT_NM,
+			S_TAG PROJECT_TAG,
+			IFNULL (S_SUM_IMG, '/images/landingDoobo/project/img_ing.png') SUM_IMG
+		FROM
+			T_LD_PROJECT_INFO
+		WHERE 1 = 1
+			AND C_USE_YN = 'Y'
+		ORDER BY
+			C_PROJECT_SEQ DESC
+	</select>
+
 	<select id="selectListfaq" resultType="Map">
 		-- FAQ 정보 조회 --
 		SELECT

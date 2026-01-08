@@ -8,14 +8,15 @@ import java.util.Map;
 @Mapper
 public interface MainDao {
 
-    public Map<String, Object> selectOneMainBanner();
+    Map<String, Object> selectOneMainBanner();
 
-    public Map<String, Object> selectOneDevInfo();
+    Map<String, Object> selectOneDevInfo();
 
-    public List<Map<String, Object>> selectListExp();
+    List<Map<String, Object>> selectListExp();
 
-    public List<Map<String, Object>> selectListfaq();
+    List<Map<String, Object>> selectListProject();
 
-    public Map<String, Object> selectOneContectInfo();
+    List<Map<String, Object>> selectListfaq();
 
+    Map<String, Object> selectOneContectInfo();
 }
