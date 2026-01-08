@@ -171,7 +171,7 @@
     function fn_openProjectDetail(seq) {
         var param = new Object();
         param.seq = seq;
-        DIALOG_OPEN("/project/projectDetail", param, "auto", "800", "프로젝트 상세");
+        DIALOG_OPEN("/project/projectDetail", param, "60%", "auto", "프로젝트 상세");
     }
 
     function DIALOG_OPEN(url, param, width, height, title) {
