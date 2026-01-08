@@ -118,10 +118,10 @@
                     proTagHtml += "<span class=\"projectTag\">#" + item + "</span>";
                 });
 
-                projectHtml += "<div class=\"projectBlock\" seq=\"" + PROJECT_SEQ + "\">";
+                projectHtml += "<div class=\"projectBlock\">";
                 projectHtml += "<div class=\"projectTop\">";
                 projectHtml += "<img src=\"" + SUM_IMG + "\" class=\"projectImg\"/>";
-                projectHtml += "<div class=\"projectTopOverlay\">";
+                projectHtml += "<div class=\"projectTopOverlay\" onclick=\"fn_openProjectDetail('" + PROJECT_SEQ + "');\">";
                 projectHtml += "<img src=\"/images/landingDoobo/icon/icon_plus.png\" class=\"projectPlus\"/>";
                 projectHtml += "</div>";
                 projectHtml += "</div>";
@@ -166,6 +166,42 @@
         } else {
 
         }
+    }
+
+    function fn_openProjectDetail(seq) {
+        var param = new Object();
+        param.seq = seq;
+        DIALOG_OPEN("/project/projectDetail", param, "auto", "800", "프로젝트 상세");
+    }
+
+    function DIALOG_OPEN(url, param, width, height, title) {
+        var divNm = "testModal"
+        $("#" + divNm).dialog("destroy").remove();				// dialog 완전 제거
+		let detailDiv = $("<div></div>");
+		detailDiv.attr("id", divNm);
+		detailDiv.attr("class", "dialogPopup");
+		$(detailDiv).appendTo("body");
+
+        $("#" + divNm).load(url, param, function(responseText, textStatus, XMLHttpRequest) {
+			if (textStatus == "error") {
+				// error
+			}
+		});
+
+        $("#" + divNm).dialog({
+            title: title,
+            modal: true,        // 배경 비활성화 (모달)
+            width: width,         // 가로 크기
+            height: height,     // 높이 자동
+            resizable: false,   // 크기 조절 비활성화
+            draggable: true,    // 드래그 가능
+            closeText: "닫기",  // 닫기 버튼 텍스트 (접근성)
+            show: { effect: "fadeIn", duration: 300 }, // 등장 효과
+            hide: { effect: "fadeOut", duration: 300 }, // 사라짐 효과
+            open: function(event, ui) {
+				$("#" + divNm).css("overflow", "hidden"); //this line does the actual hiding
+			},
+        });
     }
 </script>
 

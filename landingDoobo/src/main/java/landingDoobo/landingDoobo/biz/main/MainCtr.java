@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -68,6 +69,21 @@ public class MainCtr {
         }
 
         return returnMap;
+    }
+
+    @RequestMapping("/project/projectDetail")
+    public ModelAndView projectDetailPage(@RequestParam Map<String, Object> requestMap) {
+        Map<String, Object> paramMap = requestMap;
+        ModelAndView model = new ModelAndView();
+
+        try {
+            model.setViewName("/landingDoobo/main/projectDetail");
+            model.addObject("seq", paramMap.get("seq"));
+        }catch (Exception ignored) {
+
+        }
+
+        return model;
     }
 
     @RequestMapping("/project/schProjectDetail")
