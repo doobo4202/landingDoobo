@@ -40,19 +40,19 @@
 <input type="hidden" id="projectSeq" value="<c:out value="${seq}" />" />
   <div class="project-popup-card">
 
+    <button type="button" class="popup-close-btn" onclick="fn_closePopup()">×</button>
     <h2 class="popup-header">프로젝트 상세</h2>
-
     <div class="popup-inner">
       <!-- LEFT : 이미지 -->
       <div class="popup-left">
         <div class="main-image">
-          <img src="/images/landingDoobo/project/project1.png" alt="project image">
+          <img src="/images/landingDoobo/project/img_ing.png" alt="project image">
         </div>
 
         <div class="thumbnail-list">
-          <img src="/images/landingDoobo/project/project1.png">
-          <img src="/images/landingDoobo/project/project2.png">
-          <img src="/images/landingDoobo/project/project3.png">
+          <img src="/images/landingDoobo/project/img_ing.png">
+          <img src="/images/landingDoobo/project/img_ing.png">
+          <img src="/images/landingDoobo/project/img_ing.png">
         </div>
 
         <div class="image-pagination">1 / 4</div>
@@ -60,38 +60,29 @@
 
       <!-- RIGHT : 텍스트 -->
       <div class="popup-right">
-        <h3 class="popup-title" id="projectNm">프로젝트 제목</h3>
-
-        <div class="popup-tags" id="projectTag">
-          <span>#React</span>
-          <span>#Next.js</span>
-          <span>#TeamProject</span>
-        </div>
-
+        <h3 class="popup-title" id="projectNm"></h3>
+        <div class="popup-tags" id="projectTag"></div>
         <div class="popup-section">
           <h4>상세 설명</h4>
-          <p id="projectCont">
-            React와 Next.js를 활용하여 팀 프로젝트로 진행한 웹 서비스입니다.
-            사용자 경험과 UI 구조 개선에 중점을 두었습니다.
-          </p>
+          <p id="projectCont"></p>
         </div>
 
         <div class="popup-section">
           <h4>사용 기술</h4>
           <div class="tech-stack">
-            <span>React</span>
-            <span>Next.js</span>
-            <span>JavaScript</span>
-            <span>Tailwind CSS</span>
+            <span>SpringBoot</span>
+            <span>java</span>
+            <span>jsp</span>
+            <span>Jquery</span>
           </div>
         </div>
 
         <div class="popup-section">
-          <h4>추가 자료</h4>
+          <%--<h4>추가 자료</h4>
           <div class="download-box">
             <span>📎 발표자료.pdf</span>
             <a href="#" class="download-btn">다운로드</a>
-          </div>
+          </div>--%>
         </div>
       </div>
     </div>

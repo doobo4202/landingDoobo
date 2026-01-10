@@ -203,6 +203,11 @@
 			},
         });
     }
+
+    function fn_closePopup() {
+        var divNm = "testModal"
+        $("#" + divNm).dialog("destroy").remove();
+      }
 </script>
 
 <div class="mainContent">
